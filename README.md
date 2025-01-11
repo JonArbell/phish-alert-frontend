@@ -35,6 +35,6 @@ PhishGuard is a browser extension designed to enhance email security by helping 
 - **Backend (Java Spring Boot)**: Manages communication between the extension and external APIs securely and efficiently.
 - **APIs** :
 - **Google Safe Browsing API**: Detects unsafe links to protect users from phishing and malware threats.
-- **OpenAI API**: Provides intelligent analysis and recommendations for suspicious content detection.
+- **OpenAI API**: Secondary verification of URL safety, enhancing confidence in flagged results
 
   
