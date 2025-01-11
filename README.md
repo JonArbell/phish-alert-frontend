@@ -24,9 +24,9 @@
 
 ### Usage
 1. Open Gmail in your browser.
-2. Hover over or click any email link to trigger the security check prompt.
+2. Hover over any email link to trigger the security check prompt.
 3. Confirm if you want to check the link for safety.
-4. If the link is flagged as unsafe, a warning modal will appear.
+4. If the link is flagged as suspicious, a warning modal will appear. If the link is flagged as phishing, a red warning modal will appear. If the link is flagged as safe, a safe status modal will appear.
 
 ### Technologies Used
 - **JavaScript**: Core functionality for user interactions and dynamic content handling.
