@@ -12,9 +12,10 @@ PhishGuard is a browser extension designed to enhance email security by helping 
 
 ### Installation
 **Clone the Repository**
-git clone https://github.com/yourusername/phishguard-extension.git
-cd phishguard-extension
+1. git clone https://github.com/yourusername/phishguard-extension.git
+2. cd phishguard-extension
 
+**Install the Extension**
 1. Load the Extension in Chrome
 2. Open Chrome and navigate to chrome://extensions/.
 3. Enable Developer Mode (toggle in the top right corner).
