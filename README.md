@@ -12,7 +12,7 @@ PhishGuard is a browser extension designed to enhance email security by helping 
 
 ### Installation
 **Clone the Repository**
-1. git clone https://github.com/yourusername/phishguard-extension.git
+1. git clone https://github.com/JonArbell/phish-shield.git
 2. cd phishguard-extension
 
 **Install the Extension**
