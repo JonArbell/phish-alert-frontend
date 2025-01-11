@@ -13,7 +13,7 @@
 ### Installation
 **Clone the Repository**
 1. git clone https://github.com/JonArbell/phish-shield.git
-2. cd phishguard-extension
+2. cd phish-shield-extension
 
 **Install the Extension**
 1. Load the Extension in Chrome
