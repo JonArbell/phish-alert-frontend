@@ -11,8 +11,7 @@ PhishGuard is a browser extension designed to enhance email security by helping 
 - Clean, user-friendly interface with modal-based user prompts.
 
 ### Installation
-** Clone the Repository **
-bash
+**Clone the Repository**
 git clone https://github.com/yourusername/phishguard-extension.git
 cd phishguard-extension
 
@@ -29,12 +28,12 @@ cd phishguard-extension
 4. If the link is flagged as unsafe, a warning modal will appear.
 
 ### Technologies Used
-- ** JavaScript **: Core functionality for user interactions and dynamic content handling.
-- ** Bootstrap **: Ensures responsive and visually appealing design for the extension's UI.
-- ** Chrome Extensions API **: Integrates seamlessly with the browser to manage user interactions and permissions.
-- ** Backend (Java Spring Boot) **: Manages communication between the extension and external APIs securely and efficiently.
-- ** APIs ** :
-- ** Google Safe Browsing API **: Detects unsafe links to protect users from phishing and malware threats.
-- ** OpenAI API **: Provides intelligent analysis and recommendations for suspicious content detection.
+- **JavaScript**: Core functionality for user interactions and dynamic content handling.
+- **Bootstrap**: Ensures responsive and visually appealing design for the extension's UI.
+- **Chrome Extensions API**: Integrates seamlessly with the browser to manage user interactions and permissions.
+- **Backend (Java Spring Boot)**: Manages communication between the extension and external APIs securely and efficiently.
+- **APIs** :
+- **Google Safe Browsing API**: Detects unsafe links to protect users from phishing and malware threats.
+- **OpenAI API**: Provides intelligent analysis and recommendations for suspicious content detection.
 
   
