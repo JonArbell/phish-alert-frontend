@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "PhishGuard",
-  "version": "1.0",
+  "name": "PhishAlert: AI-Enhanced URL Protection (Gmail Extension)",
+  "version": "1.1",
   "description": "ClickShield is a browser extension designed to protect Gmail users from phishing links. It verifies the safety of links by checking them against Google Safe Browsing and OpenAI APIs. The extension prompts users for permission to verify the link's safety and displays a modal if the link is flagged as unsafe, suspicious, or safe.",
   "permissions": ["activeTab"],
   "background": {

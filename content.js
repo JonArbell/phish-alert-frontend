@@ -153,7 +153,7 @@ const urlLocal = 'http://localhost:8080';
 
 const checkUrl = async (sendUrl) =>{
 
-  const socket = new WebSocket('ws://localhost:8080/ws');
+  const socket = new WebSocket('ws://localhost:8080/url-check');
 
   socket.onopen = () =>{
     socket.send(sendUrl);
