@@ -1,7 +1,7 @@
 # PhishAlert: AI-Enhanced URL Protection (Gmail Extension)
 
 ## Overview
-**PhishShield** is a browser extension designed to enhance email security by helping users identify potential phishing links within Gmail. The system monitors user interactions with email links, prompts users for permission to verify the URL's safety, and provides warnings if a link is flagged as safe, suspicious, or phishing.
+**PhishAlert** is a browser extension designed to enhance email security by helping users identify potential phishing links within Gmail. The system monitors user interactions with email links, prompts users for permission to verify the URL's safety, and provides warnings if a link is flagged as safe, suspicious, or phishing.
 
 ### Features
 - Real-time user interaction tracking for Gmail links.
