@@ -27,7 +27,7 @@
         const send = () => {
             const prompt = document.querySelector('input').value;
 
-            const socket = new WebSocket('ws://localhost:8080/ws');
+            const socket = new WebSocket('ws://localhost:8080/url-check');
 
             socket.onopen = () => {
                 socket.send(prompt);
