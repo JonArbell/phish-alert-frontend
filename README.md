@@ -33,6 +33,7 @@
 - **Bootstrap**: Ensures responsive and visually appealing design for the extension's UI.
 - **Chrome Extensions API**: Integrates seamlessly with the browser to manage user interactions and permissions.
 - **Backend (Java Spring Boot)**: Manages communication between the extension and external APIs securely and efficiently.
+  
 ### APIs
 - **Google Safe Browsing API**: Detects unsafe links to protect users from phishing and malware threats.
 - **OpenAI API**: Secondary verification of URL safety, enhancing confidence in flagged results
