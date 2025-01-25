@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+
+    <form onsubmit="send()">
+        <label>Prompt : </label>
+        <input type="text" placeholder="Enter prompt"/>
+
+        <button type="submit">Submit</button>
+
+    </form>
+    
+    <div id="result">
+        <ul>
+
+        </ul>
+    </div>
+
+
+    <script>
+
+        const send = () => {
+            const prompt = document.querySelector('input').value;
+
+            const socket = new WebSocket('ws://localhost:8080/ws');
+
+            socket.onopen = () => {
+                socket.send(prompt);
+            };
+
+            socket.onmessage = (event) => {
+                const message = event.data;
+                console.log('Message received: ', message);
+
+                const result = document.querySelector('#result > ul');
+                result.innerHTML = '';
+                if (result) {
+                    const li = document.createElement('li');
+                    li.textContent = `${message}`;
+                    result.appendChild(li);
+                }
+
+                socket.close();
+            };
+
+            socket.onerror = (error) => {
+                console.error('WebSocket Error: ', error);
+                socket.close();
+            };
+
+            socket.onclose = (event) => {
+                if (event.wasClean) {
+                    console.log('WebSocket closed cleanly: code=' + event.code + ', reason=' + event.reason);
+                } else {
+                    console.error('WebSocket closed unexpectedly');
+                }
+
+                socket.close();
+            };
+        };
+        document.querySelector('form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            send();
+        });
+    </script>
+
+</body>
+</html>

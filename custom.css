@@ -1,0 +1,240 @@
+/* .pick-modal{
+    position : absolute;
+    color: blue;
+    background-color: #8C92AC;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    z-index: 250;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+}
+
+.pick-button{
+    padding: 10px;
+}
+
+.button-div{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 10px;
+}
+ */
+
+ /* Modal background overlay */
+.modal {
+    position : absolute;
+    z-index: 1000; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+
+/* Modal content box */
+.modal-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px; 
+    text-align: center;
+}
+
+/* Modal title */
+.modal-content h2 {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+/* Modal description text */
+.modal-content p {
+    font-size: 16px;
+    color: #555555;
+    margin-bottom: 20px;
+}
+
+/* Action buttons */
+.modal-content button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* "Yes" button (green) */
+.yes-btn {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.yes-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* "No" button (red) */
+.no-btn {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.no-btn:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+
+
+/* For small screens (responsive) */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .modal-content h2 {
+        font-size: 20px;
+    }
+
+    .modal-content p {
+        font-size: 14px;
+    }
+
+    .modal-content button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+
+
+/* Modal background overlay */
+.response-modal {
+    position : absolute;
+    display: flex;
+    z-index: 1000;;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 8px;
+  }
+  
+  /* Modal content box */
+  .response-modal-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  /* Modal title */
+  .response-modal-content h2 {
+    font-size: 24px;
+    color: #333333;
+    margin-bottom: 15px;
+  }
+  
+  /* Modal message text */
+  .response-modal-content p {
+    font-size: 16px;
+    color: #555555;
+    margin-bottom: 20px;
+  }
+  
+  /* Result indicator (safe or suspicious) */
+  .response-modal-content .result {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 20px 0;
+  }
+  
+  .safe {
+    color: #28a745; /* Green for safe */
+  }
+  
+  .suspicious {
+    color: #dc3545; /* Red for suspicious */
+  }
+  
+  /* Action button */
+  .response-modal-content button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Close button (default gray) */
+  .close-btn {
+    background-color: #6c757d;
+    color: #ffffff;
+  }
+  
+  .close-btn:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+  }
+  
+  /* For safe URL, display green background */
+  .safe-btn {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .safe-btn:hover {
+    background-color: #218838; /* Darker green */
+  }
+  
+  /* For suspicious URL, display red background */
+  .suspicious-btn {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .suspicious-btn:hover {
+    background-color: #c82333; /* Darker red */
+  }
+  
+  /* Center the modal */
+  .response-modal.show {
+    display: flex;
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 600px) {
+    .response-modal-content {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .response-modal-content h2 {
+      font-size: 20px;
+    }
+  
+    .response-modal-content p {
+      font-size: 14px;
+    }
+  
+    .response-modal-content button {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  }
+  
