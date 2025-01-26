@@ -1,30 +1,4 @@
-/**
- * @file content.js
- * @description Content script for the Phish Shield browser extension that monitors link interactions in Gmail.
- * 
- * @global
- * @var {number|null} modalTimeout - Timer ID for controlling popup display/removal delays
- * @var {Element|null} currentLink - Reference to the currently hovered link element
- * 
- * @listens document#mouseover - Monitors mouse hover events on anchor tags
- * @listens document#mouseout - Handles mouse leaving elements and cleanup
- * 
- * @function checkIfGmail
- * @returns {boolean} True if current URL is Gmail, false otherwise
- * 
- * @function removePickPopup
- * @param {Element} checkPopup - The popup element to be removed
- * @description Removes the security check popup and cleans up associated timers and references
- * 
- * @function showPickPopup
- * @param {Event} event - Mouse event that triggered the popup
- * @description Creates and displays a security verification popup next to a hovered link
- * @requires chrome.runtime
- * @requires custom.css
- * 
- * @note Popup appears after 2 seconds of hovering over a link
- * @note Popup disappears after 2 seconds of mouse leaving the popup area
- */
+
 
 let modalTimeout = null;
 let currentLink = null;
@@ -91,7 +65,8 @@ const injectStylesheet = () => {
 };
 
 
-const showPickPopup = (event) => {
+const showPickPopup = async (event) => {
+
   const checkPopup = document.querySelector('#popup-phishguard');
   if (checkPopup && currentLink === event.target)
     return;
@@ -120,9 +95,6 @@ const showPickPopup = (event) => {
   popup.style.top = `${window.scrollY + rect.top}px`;
   popup.style.left = `${window.scrollX + rect.right + 5}px`;
 
-  // const buttonDiv = document.createElement('div');
-  // buttonDiv.classList.add('button-div');
-
   const yesButton = document.createElement('button');
   yesButton.addEventListener('click',() => checkUrl(currentLink));
   yesButton.classList.add('yes-btn');
@@ -149,11 +121,9 @@ const showPickPopup = (event) => {
 
 const urlLocal = 'http://localhost:8080';
 
-
-
 const checkUrl = async (sendUrl) =>{
 
-  const socket = new WebSocket('ws://localhost:8080/url-check');
+  const socket = new WebSocket(`ws://localhost:8080/url-check?clientType=FRONTEND`);
 
   socket.onopen = () =>{
     socket.send(sendUrl);
@@ -186,37 +156,6 @@ const checkUrl = async (sendUrl) =>{
         console.error('WebSocket closed unexpectedly');
     }
   };
-
-  
-    // try{
-
-    //     const response = await fetch(`${urlLocal}/check-url`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //           url : sendUrl.href
-    //         })
-    //     });
-
-    //     if(!response.ok){
-    //         throw new Error('Failed to pass URL');
-    //     }
-
-    //     const data = await response.json();
-    //     console.log(data);
-
-    //     await showResponse(data,sendUrl);
-        
-    //     const checkPopup = document.querySelector('#popup-phishguard');
-
-    //     if(checkPopup)
-    //       checkPopup.remove();
-
-    // }catch(e){
-    //     console.error(e);
-    // }
 
 }
 
@@ -275,6 +214,5 @@ const removeResponse = () =>{
 
   if(modal)
     modal.remove();
-
 
 }
