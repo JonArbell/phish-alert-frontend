@@ -7,13 +7,13 @@
 </head>
 <body>
 
-    <!-- <form onsubmit="send()">
+    <form>
         <label>Prompt : </label>
         <input type="text" placeholder="Enter prompt"/>
 
         <button type="submit">Submit</button>
 
-    </form> -->
+    </form>
     
     <div id="result">
         <ul>
@@ -24,20 +24,21 @@
 
     <script>
 
+        const result = document.querySelector('#result > ul');
+
         const send = () => {
-            // const prompt = document.querySelector('input').value;
+            const prompt = document.querySelector('input').value;
 
             const socket = new WebSocket('ws://localhost:8080/url-check?clientType=ARDUINO');
 
             socket.onopen = () => {
-                console.log('WebSocket Arduino Connected');
+                socket.send(prompt);
             };
 
             socket.onmessage = (event) => {
                 const message = event.data;
                 console.log('Message received: ', message);
 
-                const result = document.querySelector('#result > ul');
                 if (result) {
                     const li = document.createElement('li');
                     li.textContent = `${message}`;
@@ -62,14 +63,14 @@
             };
         };
 
-        document.addEventListener('DOMContentLoaded',send);
+        // document.addEventListener('DOMContentLoaded',send);
 
 
 
-        // document.querySelector('form').addEventListener('submit', (event) => {
-        //     event.preventDefault();
-        //     send();
-        // });
+        document.querySelector('form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            send();
+        });
     </script>
 
 </body>
