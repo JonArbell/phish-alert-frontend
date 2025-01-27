@@ -9,7 +9,7 @@
 
     <form>
         <label>Prompt : </label>
-        <input type="text" placeholder="Enter prompt"/>
+        <input required type="text" placeholder="Enter prompt"/>
 
         <button type="submit">Submit</button>
 
@@ -26,50 +26,88 @@
 
         const result = document.querySelector('#result > ul');
 
-        const send = () => {
-            const prompt = document.querySelector('input').value;
+        const send = async () => {
+            
+            try{
 
-            const socket = new WebSocket('ws://localhost:8080/url-check?clientType=ARDUINO');
+                const prompt = document.querySelector('input').value;
 
-            socket.onopen = () => {
-                socket.send(prompt);
-            };
+                const urlLocal = 'http://localhost:8080';
 
-            socket.onmessage = (event) => {
-                const message = event.data;
-                console.log('Message received: ', message);
+                const response = await fetch(`${urlLocal}/check-url`,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Client-Type': 'ARDUINO'
+                    },
+                    body: JSON.stringify({url: prompt})
+                });
 
-                if (result) {
+                if(!response.ok){
+                    throw new Error('Error in fetching data');
+                }
+
+     
+                const data = await response.json();
+
+                if(data.response === 'Suspicious' || data.response === 'Safe'){
+                    
                     const li = document.createElement('li');
-                    li.textContent = `${message}`;
+
+                    li.textContent = `${data.response}`;
+
                     result.appendChild(li);
+
+
+                    return;
                 }
+                
 
-            };
+            }catch(error){
+                console.error(error);
+            }
 
-            socket.onerror = (error) => {
-                console.error('WebSocket Error: ', error);
-                socket.close();
-            };
+            // const socket = new WebSocket('ws://localhost:8080/url-check?clientType=ARDUINO');
 
-            socket.onclose = (event) => {
-                if (event.wasClean) {
-                    console.log('WebSocket closed cleanly: code=' + event.code + ', reason=' + event.reason);
-                } else {
-                    console.error('WebSocket closed unexpectedly');
-                }
+            // socket.onopen = () => {
+            //     socket.send(prompt);
+            // };
 
-                socket.close();
-            };
+            // socket.onmessage = (event) => {
+            //     const message = event.data;
+            //     console.log('Message received: ', message);
+
+            //     if (result) {
+            //         const li = document.createElement('li');
+            //         li.textContent = `${message}`;
+            //         result.appendChild(li);
+            //     }
+
+            // };
+
+            // socket.onerror = (error) => {
+            //     console.error('WebSocket Error: ', error);
+            //     socket.close();
+            // };
+
+            // socket.onclose = (event) => {
+            //     if (event.wasClean) {
+            //         console.log('WebSocket closed cleanly: code=' + event.code + ', reason=' + event.reason);
+            //     } else {
+            //         console.error('WebSocket closed unexpectedly');
+            //     }
+
+            //     socket.close();
+            // };
         };
 
         // document.addEventListener('DOMContentLoaded',send);
 
 
 
-        document.querySelector('form').addEventListener('submit', (event) => {
+        document.querySelector('form').addEventListener('submit', async (event) => {
             event.preventDefault();
-            send();
+            await send();
         });
     </script>
 

@@ -121,45 +121,80 @@ const showPickPopup = async (event) => {
 
 const urlLocal = 'http://localhost:8080';
 
-const checkUrl = async (sendUrl) =>{
+const checkUrl = async (event) =>{
 
-  const socket = new WebSocket(`ws://localhost:8080/url-check?clientType=FRONTEND`);
+  try{
 
-  socket.onopen = () =>{
-    socket.send(sendUrl);
-  }
+    const response = await fetch(`${urlLocal}/check-url`,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Client-Type': 'FRONTEND'
+      },
+      body: JSON.stringify({url: event.href})
+    });
 
-  socket.onmessage = (event) => {
+    if(!response.ok){
+      throw new Error('Error in fetching data');
+    }
 
     const checkPopup = document.querySelector('#popup-phishguard');
 
     if(checkPopup)
       checkPopup.remove();
 
-    const message = event.data;
-    console.log("Received from backend: ", message);
-    showResponse(message,sendUrl);
+    const data = await response.json();
+
+    if(data.response === 'Suspicious' || data.response === 'Safe'){
+      await showResponse(data.response,event);
+      return;
+    }
+      
+    await showResponse(data.error,event);
+
+  }catch(error){
+    console.error(error);
+  }
+
+
+
+  // const socket = new WebSocket(`ws://localhost:8080/url-check?clientType=FRONTEND`);
+
+  // socket.onopen = () =>{
+  //   socket.send(sendUrl);
+  // }
+
+  // socket.onmessage = (event) => {
+
+  //   const checkPopup = document.querySelector('#popup-phishguard');
+
+  //   if(checkPopup)
+  //     checkPopup.remove();
+
+  //   const message = event.data;
+  //   console.log("Received from backend: ", message);
+  //   showResponse(message,sendUrl);
     
 
-    socket.close();
-  };
+  //   socket.close();
+  // };
 
-  socket.onerror = (error) => {
-    console.error('WebSocket Error: ', error);
-    socket.close();
-  };
+  // socket.onerror = (error) => {
+  //   console.error('WebSocket Error: ', error);
+  //   socket.close();
+  // };
 
-  socket.onclose = (event) => {
-    if (event.wasClean) {
-        console.log('Closed cleanly, code=' + event.code + ', reason=' + event.reason);
-    } else {
-        console.error('WebSocket closed unexpectedly');
-    }
-  };
+  // socket.onclose = (event) => {
+  //   if (event.wasClean) {
+  //       console.log('Closed cleanly, code=' + event.code + ', reason=' + event.reason);
+  //   } else {
+  //       console.error('WebSocket closed unexpectedly');
+  //   }
+  // };
 
 }
 
-const showResponse = (data,event) =>{
+const showResponse = async (data,event) =>{
 
   const checkModalResponse = document.querySelector('#show-response');
   if(checkModalResponse){
@@ -186,7 +221,7 @@ const showResponse = (data,event) =>{
   span.textContent = `${data}`;
   span.classList.remove('safe','suspicious');
 
-  span.classList.add(`${data === 'Safe' ? 'safe' : 'suspicious'}`);
+  span.classList.add(`${data === 'Safe' ? 'safe' : data === 'Suspicious' ? 'suspicious' : 'error'}`);
 
   div2.appendChild(span);
 

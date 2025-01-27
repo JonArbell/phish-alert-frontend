@@ -78,7 +78,11 @@
 }
 
 .suspicious {
-  color: #dc3545; /* Red for suspicious */
+  color: #e6273a; /* Red for suspicious */
+}
+
+.error {
+  color: #ff5e00; /* Red for suspicious */
 }
 
 /* Close button (default gray) */
