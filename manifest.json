@@ -27,7 +27,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["custom.css"],
+      "resources": ["css/styles.css","css/input.css","css/output.css"],
       "matches": ["https://mail.google.com/*"]
     }
   ]

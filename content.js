@@ -1,5 +1,3 @@
-
-
 let modalTimeout = null;
 let currentLink = null;
 
@@ -55,11 +53,11 @@ const removePickPopup = (checkPopup) => {
 }
 
 const injectStylesheet = () => {
-  if (!document.querySelector('link[href*="custom.css"]')) {
+  if (!document.querySelector('link[href*="./css/styles.css"]')) {
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.type = 'text/css';
-      link.href = chrome.runtime.getURL('custom.css');
+      link.href = chrome.runtime.getURL('./css/styles.css');
       document.head.appendChild(link);
   }
 };
