@@ -123,72 +123,37 @@ const checkUrl = async (event) =>{
 
   try{
 
+    const requestUrl = toString(event.href);
+
     const response = await fetch(`${urlProd}/api/check-url`,{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Client-Type': 'FRONTEND'
-      },
-      body: JSON.stringify({url: event.href})
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Client-Type': 'ARDUINO'
+        },
+        body: JSON.stringify({url: requestUrl})
     });
 
     if(!response.ok){
-      throw new Error('Error in fetching data');
+        throw await response.json();
     }
+
+    const data = await response.json();
 
     const checkPopup = document.querySelector('#popup-phishguard');
 
     if(checkPopup)
       checkPopup.remove();
 
-    const data = await response.json();
+    console.log(data);
 
-    if(data.response === 'Suspicious' || data.response === 'Safe'){
+    if(data.response === 'Suspicious' || data.response === 'Safe')
       await showResponse(data.response,event);
-      return;
-    }
-      
-    await showResponse(data.error,event);
 
   }catch(error){
-    console.error(error);
+    console.error(error.error);
+    await showResponse(error.error,event);
   }
-
-
-
-  // const socket = new WebSocket(`ws://localhost:8080/url-check?clientType=FRONTEND`);
-
-  // socket.onopen = () =>{
-  //   socket.send(sendUrl);
-  // }
-
-  // socket.onmessage = (event) => {
-
-  //   const checkPopup = document.querySelector('#popup-phishguard');
-
-  //   if(checkPopup)
-  //     checkPopup.remove();
-
-  //   const message = event.data;
-  //   console.log("Received from backend: ", message);
-  //   showResponse(message,sendUrl);
-    
-
-  //   socket.close();
-  // };
-
-  // socket.onerror = (error) => {
-  //   console.error('WebSocket Error: ', error);
-  //   socket.close();
-  // };
-
-  // socket.onclose = (event) => {
-  //   if (event.wasClean) {
-  //       console.log('Closed cleanly, code=' + event.code + ', reason=' + event.reason);
-  //   } else {
-  //       console.error('WebSocket closed unexpectedly');
-  //   }
-  // };
 
 }
 
