@@ -123,7 +123,7 @@ const checkUrl = async (event) =>{
 
   try{
 
-    const response = await fetch(`${urlLocal}/check-url`,{
+    const response = await fetch(`${urlProd}/api/check-url`,{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
