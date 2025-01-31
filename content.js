@@ -123,9 +123,9 @@ const checkUrl = async (event) =>{
 
   try{
 
-    const requestUrl = toString(event.href);
-
-    const response = await fetch(`${urlProd}/api/check-url`,{
+    const requestUrl = event.href.toString();
+    console.log('Request URL:',requestUrl);
+    const response = await fetch(`${urlLocal}/api/check-url`,{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
