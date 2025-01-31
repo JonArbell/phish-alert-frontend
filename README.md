@@ -26,16 +26,16 @@
 1. Open Gmail in your browser.
 2. Hover over any email link to trigger the security check prompt.
 3. Confirm if you want to check the link for safety.
-4. If the link is flagged as suspicious, a warning modal will appear. If the link is flagged as phishing, a red warning modal will appear. If the link is flagged as safe, a safe status modal will appear.
+4. If the link is suspicious, a red modal with the label "Suspicious" will appear. If the link is safe, a green modal with the label "Safe" will appear. If there is an error, a yellow modal with a specific error message will appear.
 
 ### Technologies Used
 - **JavaScript**: Core functionality for user interactions and dynamic content handling.
-- **Bootstrap**: Ensures responsive and visually appealing design for the extension's UI.
+- **Tailwind CSS**: Ensures responsive and visually appealing design for the extension's UI.
 - **Chrome Extensions API**: Integrates seamlessly with the browser to manage user interactions and permissions.
 - **Backend (Java Spring Boot)**: Manages communication between the extension and external APIs securely and efficiently.
   
 ### APIs
 - **Google Safe Browsing API**: Detects unsafe links to protect users from phishing and malware threats.
-- **OpenAI API**: Secondary verification of URL safety, enhancing confidence in flagged results
+- **OpenAI API**: Provides secondary verification for URL safety by analyzing the URL response from Google Safe Browsing API. If the result is empty, OpenAI API performs additional analysis for enhanced safety validation.
 
   
