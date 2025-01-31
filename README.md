@@ -68,11 +68,11 @@ Before using the **PhishAlert** extension, make sure you have the following inst
 - **Cadao, Aaron Charles** - Support Frontend Developer
 - **Cruz, Cristina Alexis** - Project Manager
 - **De Ocampo, Jon Arbell** - Arduino Developer, Full Stack Developer
-- **Enierga, Charles** - Hardware Specialist (Circuit Design)
+- **Enierga, Charls** - Hardware Specialist (Circuit Design)
 - **Luyong, Marialyn** - Research Analyst
 - **Pingol, Rose** - Research Analyst
 - **Playda, Crislie Key** - Research Analyst
-- **Rodriguez, Reymar** - Hardware Specialist (Circuit Design), Support Frontend Developer
+- **Rodriguez, Reymar** - Vice Project Manager, Support Frontend Developer, Hardware Specialist (Circuit Design)
 
 ## Technical Writers
 - **Ballon, Parizsha Marye** 
