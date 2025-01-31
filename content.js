@@ -129,7 +129,7 @@ const checkUrl = async (event) =>{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Client-Type': 'ARDUINO'
+            'Client-Type': 'FRONTEND'
         },
         body: JSON.stringify({url: requestUrl})
     });
