@@ -8,6 +8,10 @@
 - Responsive UI for security prompts using Bootstrap.
 - Hover and click detection for enhanced interaction control.
 - Clean, user-friendly interface with modal-based user prompts.
+- Dynamic feedback system with color-coded modal alerts (Red for Suspicious, Yellow for Error, Green for Safe).
+- Secondary verification using OpenAI API for additional link safety analysis.
+- Error handling with specific messages for different scenarios.
+- Lightweight and efficient, ensuring minimal performance impact while checking URLs.
 
 ### Installation
 **Clone the Repository**
@@ -35,6 +39,6 @@
   
 ### APIs
 - **Google Safe Browsing API**: Detects unsafe links to protect users from phishing and malware threats.
-- **OpenAI API**: Provides secondary verification for URL safety by analyzing the URL response from Google Safe Browsing API. If the result is empty, OpenAI API performs additional analysis for enhanced safety validation.
+- **OpenAI API**: Performs secondary verification by analyzing the URL when Google Safe Browsing does not flag it as unsafe. It evaluates various risk factors such as domain structure, URL patterns, content indicators, and potential phishing characteristics to enhance safety validation.
 
   
