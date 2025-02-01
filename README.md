@@ -80,7 +80,7 @@ Before using the **PhishAlert** extension, make sure you have the following inst
 - **Cadao, Aaron Charles** 
 - **Cruz, Cristina Alexis** 
 - **De Ocampo, Jon Arbell**
-- **Enierga, Charles** 
+- **Enierga, Charls** 
 - **Luyong, Marialyn** 
 - **Pingol, Rose**
 - **Playda, Crislie Key**
