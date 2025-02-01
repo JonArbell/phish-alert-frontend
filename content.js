@@ -90,28 +90,63 @@ const showPickPopup = async (event) => {
   p.textContent = 'Would you like us to ensure this link is safe?';
 
   const rect = currentLink.getBoundingClientRect();
-
-  // Get the position of the link relative to the window
   const windowHeight = window.innerHeight;
   const windowWidth = window.innerWidth;
 
-  // Calculate the top and left position for the popup
-  let topPosition = window.scrollY + rect.top;
-  let leftPosition = window.scrollX + rect.right + 5; // Add a small margin
+  console.log('Window Height:',windowHeight);
+  console.log('Window Width:',windowWidth);
 
-  // Adjust popup position if the link is too close to the top or bottom
-  if (topPosition + rect.height + 100 > windowHeight + window.scrollY) { 
-    // If the link is near the bottom, show the popup above the link
-    topPosition -= 100; 
+  const popupWidth = 250; // Approximate width of the popup
+  const popupHeight = 150; // Approximate height of the popup
+
+  // Get the initial positions for the popup
+  let topPosition = window.scrollY + rect.top;
+  let leftPosition = window.scrollX + rect.right + 5; // Small margin to the right of the link
+
+  // Determine if the popup should appear above or below based on available space
+  let spaceBelow = windowHeight - (topPosition + rect.height); // Space below the link
+  let spaceAbove = topPosition - window.scrollY; // Space above the link
+
+  // Determine if the popup should appear to the left or right based on available space
+  let spaceLeft = leftPosition - window.scrollX; // Space to the left of the link
+  let spaceRight = windowWidth - (leftPosition + popupWidth); // Space to the right of the link
+
+  // Adjust vertical position
+  if (spaceBelow >= popupHeight) {
+    // There's enough space below, so place the popup below
+    topPosition += rect.height + 5; // Position the popup below the link
+  } else if (spaceAbove >= popupHeight) {
+    // Otherwise, place the popup above
+    topPosition -= popupHeight + 5; // Position the popup above the link
   } else {
-    // Otherwise, show the popup below the link
-    topPosition += rect.height + 5; 
+    // If neither direction has enough space, move it to the center
+    topPosition = (windowHeight - popupHeight) / 2 + window.scrollY; // Center it vertically
   }
 
-  // Adjust popup position if the link is too close to the left or right
-  if (leftPosition + 200 > windowWidth + window.scrollX) { 
-    // If the link is near the right, show the popup on the left of the link
-    leftPosition = window.scrollX + rect.left - 200; 
+  // Adjust horizontal position
+  if (spaceRight >= popupWidth) {
+    // There's enough space on the right, so place the popup to the right
+    leftPosition += 5; // Position the popup to the right of the link
+  } else if (spaceLeft >= popupWidth) {
+    // Otherwise, place the popup to the left
+    leftPosition -= popupWidth + 5; // Position the popup to the left of the link
+  } else {
+    // If neither direction has enough space, move it to the center
+    leftPosition = (windowWidth - popupWidth) / 2 + window.scrollX; // Center it horizontally
+  }
+
+  // Ensure the popup stays within the viewport boundaries
+  if (topPosition + popupHeight > windowHeight + window.scrollY) {
+    topPosition = windowHeight + window.scrollY - popupHeight - 5; // Keep it within the bottom of the screen
+  }
+  if (topPosition < window.scrollY) {
+    topPosition = window.scrollY + 5; // Keep it within the top of the screen
+  }
+  if (leftPosition + popupWidth > windowWidth + window.scrollX) {
+    leftPosition = windowWidth + window.scrollX - popupWidth - 5; // Keep it within the right of the screen
+  }
+  if (leftPosition < window.scrollX) {
+    leftPosition = window.scrollX + 5; // Keep it within the left of the screen
   }
 
   popup.style.top = `${topPosition}px`;
