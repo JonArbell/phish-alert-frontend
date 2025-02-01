@@ -7,14 +7,21 @@ const setOnOff = (isOn) => {
   });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', ()=> {
   
   const toggleButton = document.querySelector('#toggle');
+  const isActive = document.querySelector('#isActive');
 
   chrome.storage.local.get(['isOn'],(result)=>{
     
-    if(result.isOn === 'On') toggleButton.checked = true;
-    else toggleButton.checked = false;
+    if(result.isOn === 'On'){
+      toggleButton.checked = true;
+      isActive.textContent = 'active';
+    }
+    else{
+      toggleButton.checked = false;
+      isActive.textContent = 'inactive';
+    }
 
   });
 
@@ -22,8 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const check = toggleButton.checked ? 'On' : 'Off';
 
+    isActive.textContent = check === 'On' ? 'active' : 'inactive';
+
     setOnOff(check);
-    document.querySelector('#isActive').textContent = check === 'On' ? 'active' : 'inactive';
+    
     console.log('Is On:',check);
   });
 
