@@ -1,7 +1,7 @@
 # PhishAlert: AI-Enhanced URL Protection (Gmail Extension)
 
 ## Overview
-**PhishAlert** is a browser extension designed to enhance email security by helping users identify potential phishing links within Gmail. The system monitors user interactions with email links, prompts users for permission to verify the URL's safety, and provides warnings if a link is flagged as safe or suspicious.
+**PhishAlert** is a browser extension designed to improve email security by helping users identify potential phishing links in Gmail. The system monitors user interactions with email links, and when a user hovers over a link, it prompts them to verify the URL's safety, providing warnings if the link is deemed suspicious or safe.
 
 This project is part of our **thesis** on improving online security by integrating phishing detection into email services.
 
