@@ -13,10 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   chrome.storage.local.get(['isOn'],(result)=>{
     
-    if(result.isOn === 'On'){
-      document.querySelector('#isActive').textContent = 'active';
-      toggleButton.checked = true;
-    }else toggleButton.checked = false;
+    if(result.isOn === 'On') toggleButton.checked = true;
+    else toggleButton.checked = false;
 
   });
 
