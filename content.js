@@ -1,17 +1,54 @@
 let modalTimeout = null;
 let currentLink = null;
 
+const setOnOff = (isOn) => {
+  chrome.storage.local.set({isOn : isOn},()=>{
+    console.log('Value set to:',isOn);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+  const toggleButton = document.querySelector('#toggle');
+
+  chrome.storage.local.get(['isOn'],(result)=>{
+    
+    if(result.isOn === 'On'){
+      document.querySelector('#isActive').textContent = 'active';
+      toggleButton.checked = true;
+    }else toggleButton.checked = false;
+
+  });
+
+  toggleButton.addEventListener('change',()=>{
+
+    const check = toggleButton.checked ? 'On' : 'Off';
+
+    setOnOff(check);
+    document.querySelector('#isActive').textContent = check === 'On' ? 'active' : 'inactive';
+    console.log('Is On:',check);
+  });
+
+});
+
 document.addEventListener('mouseover', (event) => {
   const checkIfAnchorTag = event.target.tagName === 'A';
 
-  if (checkIfAnchorTag && !modalTimeout && checkIfGmail()) {
-    
-    modalTimeout = setTimeout(() => {
-      showPickPopup(event);
-    }, 2000);
-    return;
-  }
-  
+  chrome.storage.local.get(['isOn'],(result)=>{
+
+    const isOn = result.isOn === 'On';
+
+    console.log('Is On:',isOn);
+
+    if (checkIfAnchorTag && !modalTimeout && checkIfGmail() && isOn) {
+      
+      modalTimeout = setTimeout(() => {
+        showPickPopup(event);
+      }, 2000);
+      return;
+    }
+  });
+
   const checkPopup = document.querySelector('#popup-phishguard');
 
   if(checkPopup && checkPopup.contains(event.target))
