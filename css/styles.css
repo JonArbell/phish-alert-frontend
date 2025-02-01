@@ -1,3 +1,7 @@
+*{
+  font-family: 'Open Sans', sans-serif;
+}
+
 /* Modal background overlay */
 .modal, .response-modal {
   position: fixed;
