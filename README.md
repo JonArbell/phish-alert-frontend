@@ -62,6 +62,8 @@ Before using the **PhishAlert** extension, make sure you have the following inst
 - **Security Considerations**: Always ensure your extension is running on the latest version to prevent security vulnerabilities, especially in handling user interactions and API calls.
 
   
+
+
 ## Team Members
 - **Ballon, Parizsha Marye** - Logo Designer
 - **Bautista, Sebastian Kent** - Support Funds
