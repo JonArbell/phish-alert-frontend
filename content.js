@@ -90,8 +90,32 @@ const showPickPopup = async (event) => {
   p.textContent = 'Would you like us to ensure this link is safe?';
 
   const rect = currentLink.getBoundingClientRect();
-  popup.style.top = `${window.scrollY + rect.top}px`;
-  popup.style.left = `${window.scrollX + rect.right + 5}px`;
+
+  // Get the position of the link relative to the window
+  const windowHeight = window.innerHeight;
+  const windowWidth = window.innerWidth;
+
+  // Calculate the top and left position for the popup
+  let topPosition = window.scrollY + rect.top;
+  let leftPosition = window.scrollX + rect.right + 5; // Add a small margin
+
+  // Adjust popup position if the link is too close to the top or bottom
+  if (topPosition + rect.height + 100 > windowHeight + window.scrollY) { 
+    // If the link is near the bottom, show the popup above the link
+    topPosition -= 100; 
+  } else {
+    // Otherwise, show the popup below the link
+    topPosition += rect.height + 5; 
+  }
+
+  // Adjust popup position if the link is too close to the left or right
+  if (leftPosition + 200 > windowWidth + window.scrollX) { 
+    // If the link is near the right, show the popup on the left of the link
+    leftPosition = window.scrollX + rect.left - 200; 
+  }
+
+  popup.style.top = `${topPosition}px`;
+  popup.style.left = `${leftPosition}px`;
 
   const yesButton = document.createElement('button');
   yesButton.addEventListener('click',() => checkUrl(currentLink));
