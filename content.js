@@ -62,34 +62,8 @@ const injectStylesheet = () => {
   }
 };
 
+const responsivePopup = (popup,rect) =>{
 
-const showPickPopup = async (event) => {
-
-  const checkPopup = document.querySelector('#popup-phishguard');
-  if (checkPopup && currentLink === event.target)
-    return;
-
-  if(currentLink !== event.target)
-    removePickPopup(checkPopup);
-
-  currentLink = event.target;
-
-  injectStylesheet();
-
-  const popup = document.createElement('div');
-  popup.id = 'popup-phishguard';
-  popup.classList.add('modal');
-
-  const div = document.createElement('div');
-  div.classList.add('modal-content');
-
-  const h2 = document.createElement('h2');
-  h2.textContent = 'Check URL Safety';
-
-  const p = document.createElement('p');
-  p.textContent = 'Would you like us to ensure this link is safe?';
-
-  const rect = currentLink.getBoundingClientRect();
   const windowHeight = window.innerHeight;
   const windowWidth = window.innerWidth;
 
@@ -151,6 +125,37 @@ const showPickPopup = async (event) => {
 
   popup.style.top = `${topPosition}px`;
   popup.style.left = `${leftPosition}px`;
+
+}
+
+const showPickPopup = async (event) => {
+
+  const checkPopup = document.querySelector('#popup-phishguard');
+  if (checkPopup && currentLink === event.target)
+    return;
+
+  if(currentLink !== event.target)
+    removePickPopup(checkPopup);
+
+  currentLink = event.target;
+
+  injectStylesheet();
+
+  const popup = document.createElement('div');
+  popup.id = 'popup-phishguard';
+  popup.classList.add('modal');
+
+  const div = document.createElement('div');
+  div.classList.add('modal-content');
+
+  const h2 = document.createElement('h2');
+  h2.textContent = 'Check URL Safety';
+
+  const p = document.createElement('p');
+  p.textContent = 'Would you like us to ensure this link is safe?';
+
+  const rect = currentLink.getBoundingClientRect();
+  responsivePopup(popup,rect);
 
   const yesButton = document.createElement('button');
   yesButton.addEventListener('click',() => checkUrl(currentLink));
@@ -253,8 +258,7 @@ const showResponse = async (data,event) =>{
   button.classList.add('close-btn');
 
   const rect = event.getBoundingClientRect();
-  main.style.top = `${window.scrollY + rect.top}px`;
-  main.style.left = `${window.scrollX + rect.right + 5}px`;
+  responsivePopup(main,rect);
 
   div1.appendChild(h2);
   div1.appendChild(p);
