@@ -11,8 +11,8 @@ This frontend repository is responsible for rendering the extension's UI, handli
 - ✅ Security prompts displayed as modals for user alerts.
 - ✅ Text-based indicators for phishing detection:
 
-    - "Suspicious" (Displayed in red text)
-    - "Safe" (Displayed in green text)
+    - 🟥 "Suspicious" (Displayed in red text)
+    - 🟩 "Safe" (Displayed in green text)
 - ✅ Fetch API integration for seamless backend communication.
 - ✅ Designed with Tailwind CSS and Vanilla CSS for a sleek and responsive interface.
 
