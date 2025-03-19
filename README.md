@@ -59,17 +59,3 @@ Before using the **PhishAlert** extension, make sure you have the following inst
 - Performance: Optimized for minimal browser impact.
 - Security: Always use the latest version for up-to-date protection.
 
-  
-
-
-
-- **Ballon, Parizsha Marye** 
-- **Bautista, Sebastian Kent** 
-- **Cadao, Aaron Charles** 
-- **Cruz, Cristina Alexis** 
-- **De Ocampo, Jon Arbell**
-- **Enierga, Charls** 
-- **Luyong, Marialyn** 
-- **Pingol, Rose**
-- **Playda, Crislie Key**
-- **Rodriguez, Reymar**
