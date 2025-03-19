@@ -44,12 +44,6 @@ Before using the **PhishAlert** extension, make sure you have the following inst
     5. The extension will be loaded and ready for use in Gmail.
 
 
----
-
-### 🛠 Technologies Used
-- **JavaScript**: Core functionality for user interactions and dynamic content handling.
-- **Tailwind CSS**: Ensures responsive and visually appealing design for the extension's UI.
-- **Chrome Extensions API**: Integrates seamlessly with the browser to manage user interactions and permissions.
 
 ---
 
