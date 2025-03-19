@@ -225,47 +225,10 @@ const showPickPopup = async (event) => {
 
 }
 
-const urlLocal = 'http://localhost:8080';
-const urlProd = 'https://phish-alert.onrender.com';
-const checkUrl = async (event) =>{
-
-  try{
-
-    const requestUrl = event.href.toString();
-    console.log('Request URL:',requestUrl);
-    const response = await fetch(`${urlProd}/api/check-url`,{
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Client-Type': 'FRONTEND'
-        },
-        body: JSON.stringify({url: requestUrl})
-    });
-
-    if(!response.ok){
-        throw await response.json();
-    }
-
-    const data = await response.json();
-
-    const checkPopup = document.querySelector('#popup-phishguard');
-
-    if(checkPopup)
-      checkPopup.remove();
-
-    console.log(data);
-
-    if(data.response === 'Suspicious' || data.response === 'Safe')
-      await showResponse(data.response,event);
-
-  }catch(error){
-    console.error(error.error);
-    await showResponse(error.error,event);
-  }
-
-}
 
 const showResponse = async (data,event) =>{
+
+  console.log('Panis');
 
   const checkModalResponse = document.querySelector('#show-response');
   if(checkModalResponse){
@@ -310,6 +273,46 @@ const showResponse = async (data,event) =>{
   div1.appendChild(button);
   main.appendChild(div1);
   document.body.appendChild(main);
+
+}
+
+const urlLocal = 'http://localhost:8080';
+const urlProd = 'https://phish-alert.onrender.com';
+const checkUrl = async (event) =>{
+
+  try{
+
+    const requestUrl = event.href.toString();
+    console.log('Request URL:',requestUrl);
+    const response = await fetch(`${urlLocal}/api/check-url`,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Client-Type': 'FRONTEND'
+        },
+        body: JSON.stringify({url: requestUrl})
+    });
+
+    if(!response.ok){
+        throw await response.json();
+    }
+
+    const data = await response.json();
+
+    const checkPopup = document.querySelector('#popup-phishguard');
+
+    if(checkPopup)
+      checkPopup.remove();
+
+    console.log(data);
+
+    if(data.message === 'Suspicious' || data.message === 'Safe')
+      await showResponse(data.message,event);
+
+  }catch(error){
+    console.error(error.error);
+    await showResponse(error.error,event);
+  }
 
 }
 
