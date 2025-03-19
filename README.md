@@ -6,15 +6,15 @@ This frontend repository is responsible for rendering the extension's UI, handli
 ---
 
 ### 🚀 Features
+
 - ✅ Hover-based URL monitoring to detect and verify email links.
 - ✅ Security prompts displayed as modals for user alerts.
-- ✅ Color-coded indicators for phishing detection:
-    - 🟥 Suspicious Link (Red)
-    - 🟩 Safe Link (Green)
+- ✅ Text-based indicators for phishing detection:
+
+    - "Suspicious" (Displayed in red text)
+    - "Safe" (Displayed in green text)
 - ✅ Fetch API integration for seamless backend communication.
-- ✅ Lightweight & efficient with minimal impact on browser performance.
-- ✅ Designed with Tailwind CSS for a sleek and responsive interface.
-- ✅ Vanilla JS & CSS for handling popups and security alerts.
+- ✅ Designed with Tailwind CSS and Vanilla CSS for a sleek and responsive interface.
 
 ---
 
